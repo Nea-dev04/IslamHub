@@ -24,6 +24,7 @@ body {
   background-color: var(--main-bg);
   color: var(--main-text);
   transition: all 0.3s ease;
+  overflow-x: hidden;
 }
 
 /* HEADER */
@@ -37,11 +38,20 @@ body {
   backdrop-filter: blur(var(--glass-blur));
   background: var(--glass-bg);
   z-index: 1000;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: 700;
 }
 
 .logo img {
   height: 50px;
   margin-right: 10px;
+  border-radius: 8px;
 }
 
 .nav-links {
@@ -76,6 +86,16 @@ body {
   transition: all 0.3s ease;
 }
 
+.burger.toggle div:nth-child(1) {
+  transform: rotate(45deg) translate(7px, 7px);
+}
+.burger.toggle div:nth-child(2) {
+  opacity: 0;
+}
+.burger.toggle div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
 /* BANNER */
 .banner img {
   width: 100%;
@@ -90,6 +110,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 80px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .content-section h2 {
@@ -115,6 +137,7 @@ main {
   text-align: center;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .card:hover {
@@ -128,6 +151,25 @@ main {
   padding: 20px;
   backdrop-filter: blur(var(--glass-blur));
   background: var(--glass-bg);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 50px;
+}
+
+/* SCROLL REVEAL */
+.content-section {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.content-section.hidden {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.content-section.reveal {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* RESPONSIVE */
@@ -143,10 +185,16 @@ main {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     padding-top: 100px;
+    backdrop-filter: blur(var(--glass-blur));
   }
 
   .nav-links.active {
     transform: translateX(0);
+  }
+
+  .nav-links a {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
   .burger {
@@ -157,4 +205,8 @@ main {
     flex-direction: column;
     align-items: center;
   }
-    }
+
+  main {
+    padding: 100px 20px 20px;
+  }
+}
