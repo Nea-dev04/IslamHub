@@ -1,52 +1,112 @@
-/* --- VARIABLES ET RESET --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* --- RESET & VARIABLES --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  --bg: #ffffff; --text: #000000;
-  --glass: rgba(255, 255, 255, 0.8); --border: rgba(0,0,0,0.1);
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --glass: rgba(255, 255, 255, 0.7);
+  --border: rgba(0, 0, 0, 0.1);
+  --accent: #4CAF50;
 }
+
 body.dark {
-  --bg: #0a0a0a; --text: #ffffff;
-  --glass: rgba(0, 0, 0, 0.8); --border: rgba(255,255,255,0.1);
+  --bg: #0a0a0a;
+  --text: #f5f5f5;
+  --glass: rgba(20, 20, 20, 0.7);
+  --border: rgba(255, 255, 255, 0.1);
 }
 
-body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; }
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease;
+  overflow-x: hidden;
+}
 
-/* --- HEADER PC --- */
+/* --- HEADER RESPONSIVE --- */
 .header {
-  position: fixed; top: 0; width: 100%; height: 70px;
+  position: fixed;
+  top: 0; width: 100%; height: 70px;
   display: flex; justify-content: space-between; align-items: center;
-  padding: 0 5%; background: var(--glass); backdrop-filter: blur(10px);
-  z-index: 1000; border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  background: var(--glass);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
 }
-.nav-links { display: flex; list-style: none; gap: 30px; }
-.nav-links a { text-decoration: none; color: var(--text); font-weight: 500; }
-.burger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-.burger span { width: 25px; height: 2px; background: var(--text); }
 
-/* --- GRID RESPONSIVE (Le secret est ici) --- */
-.cards-container {
+.logo { display: flex; align-items: center; gap: 10px; font-family: 'Montserrat'; font-weight: 700; }
+.logo img { height: 40px; }
+
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a { text-decoration: none; color: var(--text); font-weight: 500; font-size: 0.9rem; transition: 0.3s; }
+.nav-links a:hover { color: var(--accent); }
+
+.nav-controls { display: flex; align-items: center; gap: 15px; }
+#darkModeToggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; }
+
+/* --- BURGER MOBILE --- */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+.burger span { width: 25px; height: 2px; background: var(--text); transition: 0.3s; }
+
+/* --- HERO --- */
+.hero-clean {
+  height: 60vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  padding-top: 70px;
+}
+.hero-text h1 { font-family: 'Montserrat'; font-size: clamp(2.5rem, 8vw, 4.5rem); letter-spacing: -2px; }
+.hero-text p { opacity: 0.6; margin-top: 10px; }
+.hero-line { width: 40px; height: 3px; background: var(--accent); margin: 20px auto; }
+
+/* --- GRILLE DE CARTES RESPONSIVE --- */
+main { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+.content-section { margin-bottom: 60px; }
+.content-section h2 { margin-bottom: 30px; font-family: 'Montserrat'; }
+
+.cards-grid {
   display: grid;
-  /* Sur PC : 3 colonnes. Sur tablette : 2. Sur mobile : 1. */
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  padding: 20px 0;
 }
 
-.card {
-  background: var(--glass); border: 1px solid var(--border);
-  padding: 50px 20px; border-radius: 20px; text-align: center;
-  transition: 0.3s;
+.card.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  padding: 40px 20px;
+  border-radius: 20px;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
+.card.glass:hover { transform: translateY(-10px); border-color: var(--accent); }
 
-/* --- MEDIA QUERIES (ADAPTATION MOBILE) --- */
-@media (max-width: 768px) {
+.footer { padding: 40px; text-align: center; opacity: 0.5; font-size: 0.8rem; }
+
+/* --- MEDIA QUERIES (MOBILE) --- */
+@media (max-width: 850px) {
   .nav-links {
-    position: fixed; top: 70px; right: -100%; width: 100%; height: calc(100vh - 70px);
-    background: var(--bg); flex-direction: column; align-items: center; 
-    padding-top: 50px; transition: 0.4s;
+    position: fixed;
+    top: 70px; right: -100%;
+    width: 80%; height: calc(100vh - 70px);
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s ease-in-out;
+    box-shadow: -10px 0 20px rgba(0,0,0,0.05);
   }
-  .nav-links.active { right: 0; } /* Affiche le menu quand on clique */
+  .nav-links.active { right: 0; }
   .burger { display: flex; }
-  
-  .hero-section h1 { font-size: 2.5rem; }
-        }
+}
