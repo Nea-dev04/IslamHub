@@ -2,11 +2,9 @@
 :root {
   --bg: #ffffff;
   --txt: #000000;
-  --acc: #4caf50;
-
-  --glass-light: rgba(255,255,255,0.15);
+  --accent: #00ff7f; /* vert Matrix */
+  --glass-light: rgba(255,255,255,0.25);
   --glass-dark: rgba(0,0,0,0.15);
-
   --blur: 12px;
 }
 
@@ -14,10 +12,11 @@
 body.dark {
   --bg: #000000;
   --txt: #ffffff;
-  --glass-light: rgba(0,0,0,0.25);
+  --glass-light: rgba(0,0,0,0.15);
   --glass-dark: rgba(255,255,255,0.10);
 }
 
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +30,7 @@ body {
   transition: 0.3s ease;
 }
 
-/* GLASS EFFECT */
+/* GLASSMORPHISM */
 .glass {
   background: var(--glass-light);
   backdrop-filter: blur(var(--blur));
@@ -67,6 +66,11 @@ body {
   text-decoration: none;
   color: var(--txt);
   font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: var(--accent);
 }
 
 /* BURGER */
@@ -117,10 +121,12 @@ body {
   border-radius: 12px;
   font-size: 1.2rem;
   transition: 0.3s ease;
+  border: 1px solid var(--accent);
 }
+
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0px 8px 18px rgba(0,0,0,0.15);
+  box-shadow: 0 0 15px var(--accent);
 }
 
 /* FOOTER */
@@ -131,22 +137,24 @@ body {
 }
 
 /* RESPONSIVE */
-@media (max-width:768px) {
-
+@media (max-width:768px){
   .nav {
-    display: none;
-    position: absolute;
-    top: 68px;
-    right: 0;
+    display: flex;
     flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -250px;  /* hors écran au départ */
+    height: 100vh;
+    width: 250px;
     background: var(--glass-light);
-    width: 230px;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 60px 20px;
+    gap: 20px;
+    transition: right 0.3s ease;
+    z-index: 9999;
   }
 
   .nav.active {
-    display: flex;
+    right: 0; /* déroule depuis la droite */
   }
 
   .burger {
@@ -156,5 +164,4 @@ body {
   .cards {
     grid-template-columns: 1fr;
   }
-
-  }
+                  }
