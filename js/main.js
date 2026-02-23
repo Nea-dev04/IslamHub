@@ -1,41 +1,32 @@
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- MODE SOMBRE ---
-    const darkToggle = document.getElementById('darkModeToggle');
-    darkToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-    });
+// MENU BURGER
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
 
-    // --- MENU MOBILE ---
-    const burger = document.getElementById('burgerMenu');
-    const nav = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+});
 
-    burger.addEventListener('click', () => {
-        nav.classList.toggle('active');
-    });
+// DARK MODE TOGGLE
+const darkToggle = document.getElementById('darkModeToggle');
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+});
 
-    // Fermer le menu au clic sur un lien
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            nav.classList.remove('active');
-        });
-    });
+// SCROLL REVEAL EFFECT
+const sections = document.querySelectorAll('.content-section');
 
-    // --- ANIMATION D'APPARITION ---
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1 });
+const revealSection = (entries, observer) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('reveal');
+      observer.unobserve(entry.target);
+    }
+  });
+};
 
-    document.querySelectorAll('.card').forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'all 0.6s ease-out';
-        observer.observe(card);
-    });
+const observer = new IntersectionObserver(revealSection, { threshold: 0.15 });
+
+sections.forEach(section => {
+  section.classList.add('hidden'); // initial hidden
+  observer.observe(section);
 });
