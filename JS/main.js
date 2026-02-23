@@ -1,54 +1,34 @@
-// Attendre DOM
-document.addEventListener('DOMContentLoaded', () => {
-  // MENU BURGER
-  const burger = document.querySelector('.burger');
-  const nav = document.querySelector('.nav-links');
+// DARK MODE
+const darkToggle = document.getElementById('darkModeToggle');
+const body = document.body;
 
-  burger.addEventListener('click', () => {
-    nav.classList.toggle('active');
-    burger.classList.toggle('toggle');
-  });
-
-  // Fermer menu au clic sur lien
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      nav.classList.remove('active');
-      burger.classList.remove('toggle');
-    });
-  });
-
-  // DARK MODE TOGGLE
-  const darkToggle = document.getElementById('darkModeToggle');
-  const updateToggleIcon = () => {
-    darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-  };
-  updateToggleIcon();
-
-  darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    updateToggleIcon();
-    localStorage.setItem('darkMode', document.body.classList.contains('dark'));
-  });
-
-  // Charger mode sombre sauvegardé
-  if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.add('dark');
-    updateToggleIcon();
-  }
-
-  // SCROLL REVEAL EFFECT
-  const sections = document.querySelectorAll('.content-section');
-  const revealSection = (entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('reveal');
-        observer.unobserve(entry.target);
-      }
-    });
-  };
-
-  const observer = new IntersectionObserver(revealSection, { threshold: 0.15 });
-  sections.forEach(section => {
-    observer.observe(section);
-  });
+darkToggle.addEventListener('click', () => {
+    body.classList.toggle('dark');
+    darkToggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
 });
+
+// BURGER MENU (Simple alert pour test)
+const burger = document.querySelector('.burger');
+burger.addEventListener('click', () => {
+    document.querySelector('.nav-links').classList.toggle('active');
+    // Ajoute du CSS pour .nav-links.active si tu veux un menu mobile coulissant
+});
+
+// APPARITION AU SCROLL
+const observerOptions = { threshold: 0.1 };
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.card').forEach(card => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "all 0.6s ease-out";
+    observer.observe(card);
+});
+      
