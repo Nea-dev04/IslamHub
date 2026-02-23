@@ -1,64 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 1. GESTION DU MODE SOMBRE
+    // --- MODE SOMBRE ---
     const darkToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+        darkToggle.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    });
 
-    if (darkToggle) {
-        darkToggle.addEventListener('click', () => {
-            body.classList.toggle('dark');
-            // Change l'icône selon le mode
-            darkToggle.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
-            
-            // Optionnel: Sauvegarder la préférence de l'utilisateur
-            const isDark = body.classList.contains('dark');
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    // --- MENU MOBILE ---
+    const burger = document.getElementById('burgerMenu');
+    const nav = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+
+    // Fermer le menu au clic sur un lien
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
         });
-    }
+    });
 
-    // 2. MENU BURGER MOBILE
-    const burgerMenu = document.getElementById('burgerMenu');
-    const navLinks = document.getElementById('navLinks');
-
-    if (burgerMenu && navLinks) {
-        burgerMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Animation du burger (optionnel : transforme les barres en X)
-            burgerMenu.classList.toggle('toggle');
-        });
-
-        // Fermer le menu si on clique sur un lien (très important pour mobile)
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-    }
-
-    // 3. ANIMATION D'APPARITION (SCROLL REVEAL)
-    // On utilise IntersectionObserver pour un rendu High-Tech fluide
-    const observerOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
+    // --- ANIMATION D'APPARITION ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Une fois visible, on arrête d'observer cet élément
-                observer.unobserve(entry.target);
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    // On applique l'animation aux cartes et aux titres de section
-    const animatedElements = document.querySelectorAll('.card, .content-section h2');
-    
-    animatedElements.forEach(el => {
-        el.classList.add('reveal-init'); // État de départ (caché)
-        observer.observe(el);
+    document.querySelectorAll('.card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'all 0.6s ease-out';
+        observer.observe(card);
     });
 });
-            
