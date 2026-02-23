@@ -1,32 +1,32 @@
-// MENU BURGER
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
+// burger menu
 
-burger.addEventListener('click', () => {
-  nav.classList.toggle('active');
+const burger = document.getElementById("burger");
+const nav = document.getElementById("nav");
+
+burger.addEventListener("click", () => {
+
+nav.classList.toggle("active");
+
 });
 
-// DARK MODE TOGGLE
-const darkToggle = document.getElementById('darkModeToggle');
-darkToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
 
-// SCROLL REVEAL EFFECT
-const sections = document.querySelectorAll('.content-section');
+// dark mode
 
-const revealSection = (entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      entry.target.classList.add('reveal');
-      observer.unobserve(entry.target);
-    }
-  });
-};
+const toggle = document.getElementById("darkToggle");
 
-const observer = new IntersectionObserver(revealSection, { threshold: 0.15 });
+if(localStorage.getItem("darkMode") === "true"){
 
-sections.forEach(section => {
-  section.classList.add('hidden'); // initial hidden
-  observer.observe(section);
+document.body.classList.add("dark");
+
+}
+
+toggle.addEventListener("click", () => {
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+"darkMode",
+document.body.classList.contains("dark")
+);
+
 });
