@@ -5,70 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IslamHub - La voie authentique</title>
 
-  <link rel="icon" type="image/png" href="./assets/favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.ico">
 
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="./css/style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header class="header">
+  <!-- HEADER -->
+  <header class="header glass">
     <div class="logo">
-      <img src="./assets/logo.png" alt="IslamHub Logo">
+      <img src="assets/logo.png" alt="IslamHub Logo">
       <span>IslamHub</span>
     </div>
     <nav>
-      <ul class="nav-links" id="navLinks">
+      <ul class="nav-links">
         <li><a href="#coran">Coran & Hadith</a></li>
         <li><a href="#noms">Noms d'Allah</a></li>
-        <li><a href="#fiqh">Fiqh</a></li>
-        <li><a href="#education">Éducation</a></li>
+        <li><a href="#fiqh">Fiqh & Spiritualité</a></li>
+        <li><a href="#education">Éducation & Inspiration</a></li>
       </ul>
-    </nav>
-    <div class="nav-controls">
-      <button id="darkModeToggle" aria-label="Toggle Dark Mode">🌙</button>
-      <div class="burger" id="burgerMenu">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="burger">
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-    </div>
+    </nav>
+    <button id="darkModeToggle">🌙</button>
   </header>
 
-  <section class="hero-clean">
-    <div class="hero-text">
-      <h1>IslamHub</h1>
-      <p>Plateforme de savoir authentique et minimaliste.</p>
-      <div class="hero-line"></div>
-    </div>
+  <!-- BANNER -->
+  <section class="banner">
+    <img src="assets/banner.png" alt="IslamHub Banner">
   </section>
 
+  <!-- MAIN CONTENT -->
   <main>
     <section id="coran" class="content-section">
       <h2>Coran & Hadith</h2>
-      <div class="cards-grid">
-        <div class="card glass"><h3>PDFs</h3><p>Textes sources</p></div>
-        <div class="card glass"><h3>Audio</h3><p>Récitations</p></div>
-        <div class="card glass"><h3>Vidéos</h3><p>Cours visuels</p></div>
+      <div class="cards">
+        <div class="card">PDFs</div>
+        <div class="card">Audio</div>
+        <div class="card">Vidéos</div>
       </div>
     </section>
 
     <section id="noms" class="content-section">
       <h2>Noms d'Allah</h2>
-      <div class="cards-grid">
-        <div class="card glass"><h3>Articles</h3></div>
-        <div class="card glass"><h3>Explications</h3></div>
-        <div class="card glass"><h3>Série Vidéo</h3></div>
+      <div class="cards">
+        <div class="card">Articles</div>
+        <div class="card">Explications</div>
+        <div class="card">Vidéos</div>
+      </div>
+    </section>
+
+    <section id="fiqh" class="content-section">
+      <h2>Fiqh & Spiritualité</h2>
+      <div class="cards">
+        <div class="card">Guides pratiques</div>
+        <div class="card">Articles</div>
+        <div class="card">Vidéos</div>
+      </div>
+    </section>
+
+    <section id="education" class="content-section">
+      <h2>Éducation & Inspiration</h2>
+      <div class="cards">
+        <div class="card">Cours</div>
+        <div class="card">PDF</div>
+        <div class="card">Vidéos</div>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <!-- FOOTER -->
+  <footer class="footer glass">
     <p>© 2026 IslamHub - Tous droits réservés</p>
   </footer>
 
-  <script src="./js/main.js"></script>
+  <!-- JS -->
+  <script src="js/main.js"></script>
 </body>
-                </html>
-                
+</html>
