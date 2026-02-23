@@ -2,14 +2,12 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>IslamHub</title>
-
-<link rel="stylesheet" href="css/style.css">
 
 <link rel="icon" href="assets/favicon.ico">
 
+<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -17,77 +15,64 @@
 <header class="header glass">
 
 <div class="logo">
-<img src="assets/logo.png" alt="IslamHub logo">
-<span>IslamHub</span>
+  <img src="assets/logo.png" alt="IslamHub">
+  <span>IslamHub</span>
 </div>
 
 <nav class="nav" id="nav">
-
-<a href="#">Accueil</a>
-<a href="#">Coran</a>
-<a href="#">Hadith</a>
-<a href="#">Fiqh</a>
-<a href="#">Contact</a>
-
+  <a href="#">Accueil</a>
+  <a href="#coran">Coran</a>
+  <a href="#hadith">Hadith</a>
+  <a href="#fiqh">Fiqh</a>
+  <a href="#education">Éducation</a>
 </nav>
 
 <div class="controls">
-
-<button id="darkToggle">🌙</button>
-
-<div class="burger" id="burger">
-<span></span>
-<span></span>
-<span></span>
-</div>
-
+  <button id="darkToggle">🌙</button>
+  <div class="burger" id="burger">
+    <span></span><span></span><span></span>
+  </div>
 </div>
 
 </header>
 
-
-<section class="hero">
-
-<h1 class="glass">IslamHub</h1>
-
-<p>Plateforme moderne de science authentique</p>
-
+<section class="hero glass">
+  <h1>IslamHub</h1>
+  <p>Plateforme de science authentique</p>
 </section>
 
+<main class="main">
 
-<section class="cards">
-
-<div class="card glass">
-<h2>Coran</h2>
-<p>Lecture et étude</p>
-</div>
-
-<div class="card glass">
-<h2>Hadith</h2>
-<p>Paroles authentiques</p>
-</div>
-
-<div class="card glass">
-<h2>Fiqh</h2>
-<p>Compréhension pratique</p>
-</div>
-
-<div class="card glass">
-<h2>Éducation</h2>
-<p>Apprentissage structuré</p>
-</div>
-
+<section id="coran" class="section cards glass">
+  <div class="card">Coran</div>
+  <div class="card">PDF</div>
+  <div class="card">Audio</div>
 </section>
 
+<section id="hadith" class="section cards glass">
+  <div class="card">Hadith</div>
+  <div class="card">Explications</div>
+  <div class="card">Vidéos</div>
+</section>
 
-<footer class="glass">
+<section id="fiqh" class="section cards glass">
+  <div class="card">Fiqh</div>
+  <div class="card">Articles</div>
+  <div class="card">Guides</div>
+</section>
 
+<section id="education" class="section cards glass">
+  <div class="card">Cours</div>
+  <div class="card">Inspiration</div>
+  <div class="card">Ressources</div>
+</section>
+
+</main>
+
+<footer class="footer glass">
 <p>© 2026 IslamHub</p>
-
 </footer>
 
-
 <script src="js/main.js"></script>
-
 </body>
   </html>
